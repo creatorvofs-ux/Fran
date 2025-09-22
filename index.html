@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Controle Diário</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E8B57">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Meu Controle Diário">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Minhas Tarefas</h1>
+            <p>Organize seu dia de forma simples</p>
+        </header>
+
+        <div class="add-task">
+            <input type="text" id="taskInput" placeholder="Digite uma nova tarefa...">
+            <button onclick="addTask()">➕ Adicionar</button>
+        </div>
+
+        <div class="stats">
+            <span id="totalTasks">Total: 0</span>
+            <span id="completedTasks">Concluídas: 0</span>
+        </div>
+
+        <div class="filter-buttons">
+            <button onclick="filterTasks('all')" class="active">Todas</button>
+            <button onclick="filterTasks('pending')">Pendentes</button>
+            <button onclick="filterTasks('completed')">Concluídas</button>
+        </div>
+
+        <ul id="taskList" class="task-list">
+            <!-- Tarefas aparecerão aqui -->
+        </ul>
+
+        <!-- ANÚNCIO BANNER -->
+        <div id="ad-container">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-0000000000000000"
+                 data-ad-slot="0000000000"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="actions">
+            <button onclick="clearCompleted()" class="secondary">Limpar Concluídas</button>
+            <button onclick="saveTasks()" class="primary">💾 Salvar Tudo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Service Worker -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+        .then(function(registration) {
+            console.log('Service Worker registrado com sucesso:', registration);
+        })
+        .catch(function(error) {
+            console.log('Falha ao registrar Service Worker:', error);
+        });
+    }
+    </script>
+</body>
+  </html>
